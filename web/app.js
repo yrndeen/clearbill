@@ -2,6 +2,8 @@
   const AEVUM_RPC = "https://rpc-test.qday.info";
   const AEVUM_CHAIN_ID = 44005;
   const OFFICIAL_TUSD8 = "0x456569838f1d43009A91ebA4263147Afd7233483";
+  const CLEARBILL_REGISTRY = "0x5389083b1FbCE68ee6adD211D0E21b74F016EB71";
+  const CLEARBILL_INVOICES = "0x27825D851BC38a216c907a35184da9187dce75a3";
 
   const state = {
     nextId: 1,
@@ -99,11 +101,13 @@
     castPreview.textContent = [
       `# Read-only Aevum Testnet (44005) command template for Invoice #${latest.id}`,
       `# Official tUSD8: ${OFFICIAL_TUSD8}`,
-      `cast call $CLEARBILL_INVOICES "verifyPayee(uint256,address,string)(bool,string)" ${latest.id} ${latest.payee} "${latest.payeeName}" --rpc-url ${AEVUM_RPC}`,
-      `cast send $CLEARBILL_INVOICES "confirmPayee(uint256,address,string)" ${latest.id} ${latest.payee} "${latest.payeeName}" --rpc-url ${AEVUM_RPC} --private-key $TESTNET_PK`,
-      `cast send ${OFFICIAL_TUSD8} "approve(address,uint256)" $CLEARBILL_INVOICES ${latest.amountUnits} --rpc-url ${AEVUM_RPC} --private-key $TESTNET_PK`,
-      `cast send $CLEARBILL_INVOICES "payInvoice(uint256)" ${latest.id} --rpc-url ${AEVUM_RPC} --private-key $TESTNET_PK`,
-      `cast send $CLEARBILL_INVOICES "acknowledgeAndRelease(uint256)" ${latest.id} --rpc-url ${AEVUM_RPC} --private-key $TESTNET_PK`,
+      `# ClearbillRegistry: ${CLEARBILL_REGISTRY}`,
+      `# ClearbillInvoices: ${CLEARBILL_INVOICES}`,
+      `cast call ${CLEARBILL_INVOICES} "verifyPayee(uint256,address,string)(bool,string)" ${latest.id} ${latest.payee} "${latest.payeeName}" --rpc-url ${AEVUM_RPC}`,
+      `cast send ${CLEARBILL_INVOICES} "confirmPayee(uint256,address,string)" ${latest.id} ${latest.payee} "${latest.payeeName}" --rpc-url ${AEVUM_RPC} --private-key $TESTNET_PK`,
+      `cast send ${OFFICIAL_TUSD8} "approve(address,uint256)" ${CLEARBILL_INVOICES} ${latest.amountUnits} --rpc-url ${AEVUM_RPC} --private-key $TESTNET_PK`,
+      `cast send ${CLEARBILL_INVOICES} "payInvoice(uint256)" ${latest.id} --rpc-url ${AEVUM_RPC} --private-key $TESTNET_PK`,
+      `cast send ${CLEARBILL_INVOICES} "acknowledgeAndRelease(uint256)" ${latest.id} --rpc-url ${AEVUM_RPC} --private-key $TESTNET_PK`,
     ].join("\n");
   }
 

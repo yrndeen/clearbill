@@ -47,12 +47,14 @@ python3 -m http.server 8080 --directory web
 docker build -t clearbill-demo . && docker run -p 8080:8080 clearbill-demo
 ```
 
-## QDay Aevum Testnet (`44005`) Deployment
+## QDay Aevum Testnet (`44005`) Deployment (Live)
 
 - **Chain ID:** `44005` (script aborts on `44001`, `44003`, or Ethereum mainnet)
 - **RPC:** `https://rpc-test.qday.info`
 - **Explorer:** `https://explorer-test.qday.info`
-- **Official `tUSD8` (6 decimals):** `0x456569838f1d43009A91ebA4263147Afd7233483`
+- **Official `tUSD8` (6 decimals):** [`0x456569838f1d43009A91ebA4263147Afd7233483`](https://explorer-test.qday.info/address/0x456569838f1d43009A91ebA4263147Afd7233483)
+- **Deployed `ClearbillRegistry`:** [`0x5389083b1FbCE68ee6adD211D0E21b74F016EB71`](https://explorer-test.qday.info/address/0x5389083b1FbCE68ee6adD211D0E21b74F016EB71) ([deploy tx](https://explorer-test.qday.info/tx/0x0a0553cf73b5773e2cf7fb738b605894ec450e9a9a3773f64a1a0a1973895ca5))
+- **Deployed `ClearbillInvoices`:** [`0x27825D851BC38a216c907a35184da9187dce75a3`](https://explorer-test.qday.info/address/0x27825D851BC38a216c907a35184da9187dce75a3) ([deploy tx](https://explorer-test.qday.info/tx/0x7f7e5867c89b4ff541c7fe80b7a89063b96e9f7542978740874dcea13d5d8127))
 - **Official Faucet (`tQDAY` + `tUSD8`):** `https://faucet.qday.info/en`
 
 ```bash
