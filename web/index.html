@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Clearbill — tUSD8 Invoices + Confirmation of Payee (Aevum Testnet)</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%234f8cff%22/><text x=%2216%22 y=%2222%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2218%22 font-family=%22sans-serif%22>C</text></svg>" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>Clearbill</h1>
+        <div class="muted">Confirmation-of-Payee stablecoin invoicing on QDay Aevum Testnet (Chain ID <code>44005</code>)</div>
+      </div>
+      <div>
+        <span class="badge ok">tUSD8 · 6 decimals</span>
+        <span id="rpcBadge" class="badge">RPC: checking…</span>
+      </div>
+    </header>
+
+    <div id="statusBanner" class="status-banner" role="status" aria-live="polite">
+      Loading Aevum Testnet status…
+    </div>
+
+    <div class="grid">
+      <section class="card">
+        <h2>1. Issue tUSD8 Invoice</h2>
+        <form id="createForm">
+          <label for="payeeName">Payee Display Name (CoP Canonical Name)</label>
+          <input id="payeeName" required placeholder="Northstar Design Studio LLC" />
+
+          <label for="payeeAddr">Payee Address (0x…)</label>
+          <input id="payeeAddr" required placeholder="0x1111111111111111111111111111111111111111" />
+
+          <label for="payerAddr">Payer Address (0x…)</label>
+          <input id="payerAddr" required placeholder="0x2222222222222222222222222222222222222222" />
+
+          <label for="amount">Amount (tUSD8, up to 6 decimals)</label>
+          <input id="amount" required type="number" step="0.000001" min="0.000001" placeholder="250.50" />
+
+          <label for="memo">Invoice Memo</label>
+          <input id="memo" placeholder="Q4 brand sprint deliverable" />
+
+          <div class="actions">
+            <button type="submit">Create Invoice</button>
+            <button type="button" id="loadSampleBtn" class="secondary">Load Sample</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>2. Confirmation of Payee (CoP) Gate</h2>
+        <p class="muted">
+          Before any <code>tUSD8</code> moves, the payer must confirm both the exact payee address and display name. Any mismatch aborts payment.
+        </p>
+        <label for="copInvoiceId">Invoice ID</label>
+        <input id="copInvoiceId" placeholder="1" />
+
+        <label for="copExpectedAddr">Expected Payee Address</label>
+        <input id="copExpectedAddr" placeholder="0x1111…" />
+
+        <label for="copExpectedName">Expected Payee Display Name</label>
+        <input id="copExpectedName" placeholder="Northstar Design Studio LLC" />
+
+        <div class="actions">
+          <button type="button" id="verifyCopBtn">Confirm Payee (CoP)</button>
+          <button type="button" id="payBtn" class="secondary">Pay tUSD8 into Escrow</button>
+          <button type="button" id="releaseBtn" class="secondary">Acknowledge &amp; Release</button>
+        </div>
+        <div id="copResult" class="muted" style="margin-top: 10px;"></div>
+      </section>
+    </div>
+
+    <section class="card" style="margin-top: 18px;">
+      <div class="invoice-head">
+        <h2>Invoices &amp; Settlement Audit Trail</h2>
+        <button type="button" id="clearBtn" class="secondary" style="margin-top: 0;">Clear Local Demo</button>
+      </div>
+      <div id="invoiceList" style="margin-top: 12px;"></div>
+    </section>
+
+    <section class="card" style="margin-top: 18px;">
+      <h2>Aevum Testnet Official Contracts (Read-Only Reference)</h2>
+      <p class="muted">
+        Network: <strong>QDay Aevum Testnet</strong> (Chain ID <code>44005</code>) ·
+        Explorer: <a href="https://explorer-test.qday.info" target="_blank" rel="noreferrer">explorer-test.qday.info</a> ·
+        tUSD8: <a href="https://explorer-test.qday.info/address/0x456569838f1d43009A91ebA4263147Afd7233483" target="_blank" rel="noreferrer"><code>0x456569838f1d43009A91ebA4263147Afd7233483</code></a> ·
+        Faucet: <a href="https://faucet.qday.info/en" target="_blank" rel="noreferrer">faucet.qday.info/en</a>
+      </p>
+      <pre id="castPreview"># Create an invoice above to generate the matching Aevum Testnet (44005) cast commands.</pre>
+    </section>
+  </div>
+  <script src="./app.js"></script>
+</body>
+</html>
