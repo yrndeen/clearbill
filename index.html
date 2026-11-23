@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clearbill Demo</title>
+  <style>
+    :root { color-scheme: dark; }
+    body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; background: #0b0d10; color: #e8edf2; }
+    main { max-width: 960px; margin: 0 auto; padding: 32px 20px 64px; }
+    h1 { font-size: 1.7rem; margin: 0 0 8px; letter-spacing: -0.02em; }
+    p, li { color: #b4bec8; line-height: 1.55; }
+    video { width: 100%; background: #000; border-radius: 12px; margin: 20px 0; }
+    a { color: #8bd0ff; }
+    ul { padding-left: 1.2rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Clearbill</h1>
+    <p>Aevum Builder Challenge #1 — stablecoin invoicing with mandatory Confirmation of Payee (CoP) on QDay Aevum Testnet (44005), using official tUSD8.</p>
+    <ul>
+      <li>A payee issues an invoice bound immutably to official tUSD8.</li>
+      <li>The payer must confirm the payee (on-chain CoP match) before any tUSD8 can move.</li>
+      <li>After payment, an escrow review window allows immediate payer release, deterministic auto-finalization, or a voluntary payee refund.</li>
+    </ul>
+    <video controls playsinline preload="metadata" src="clearbill-demo-final.mp4"></video>
+    <p><a href="clearbill-demo-final.mp4">Direct MP4 link</a></p>
+  </main>
+</body>
+</html>
